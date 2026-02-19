@@ -1,9 +1,18 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/general/Navbar";
 
-const geist = Geist({ subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Mio Blog Personale",
@@ -13,16 +22,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
-      <body className={`${geist.className} antialiased bg-white text-slate-900`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased
+      bg-white text-slate-900 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`}>
         {/* Navbar Semplice */}
         <header className="border-b sticky top-0 bg-white/80 backdrop-blur-md z-50">
-          <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <span className="font-bold text-xl tracking-tight">BLOG.JS</span>
-            <div className="flex gap-6 text-sm font-medium">
-              <a href="#" className="hover:text-blue-600 transition">Articoli</a>
-              <a href="#" className="hover:text-blue-600 transition">Chi sono</a>
-            </div>
-          </nav>
+          <Navbar />
         </header>
 
         <main>{children}</main>
