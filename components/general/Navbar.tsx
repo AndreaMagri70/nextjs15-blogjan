@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export function Navbar() {
   return (
@@ -12,8 +13,13 @@ export function Navbar() {
 
       <div className="hidden sm:flex items-center gap-6 text-xl">
         <Link href="/" className="hover:text-blue-600 transition"> Home</Link>
-        <Link href="/" className="hover:text-blue-600 transition"> Articoli</Link>
+        <Link href="/" className="hover:text-blue-600 transition"> Dashboard</Link>
         <Link href="/" className="hover:text-blue-600 transition"> Chi sono</Link>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <Button>Login</Button>
+        <Button variant="secondary">Sign Up</Button>
       </div>
     </nav>
   );
