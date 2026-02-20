@@ -1,7 +1,12 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
+import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export function Navbar() {
+export async function Navbar() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  
   return (
     <nav className="py-5 flex items-center justify-between">
 
@@ -13,14 +18,25 @@ export function Navbar() {
 
       <div className="hidden sm:flex items-center gap-6 text-xl">
         <Link href="/" className="hover:text-blue-600 transition"> Home</Link>
-        <Link href="/" className="hover:text-blue-600 transition"> Dashboard</Link>
+        <Link href="/dashboard" className="hover:text-blue-600 transition"> Dashboard</Link>
         <Link href="/" className="hover:text-blue-600 transition"> Chi sono</Link>
       </div>
 
-      <div className="flex items-center gap-4">
-        <Button>Login</Button>
-        <Button variant="secondary">Sign Up</Button>
-      </div>
+      {user ? (
+        <div className="flex items-center gap-4">
+          <p>Hello {user.given_name}</p>
+          <LogoutLink className={buttonVariants({ variant: "secondary" })}>
+            Logout
+          </LogoutLink>
+        </div>
+      ) : (
+        <div className="flex items-center gap-4">
+          <LoginLink className={buttonVariants()}>Login</LoginLink>
+          <RegisterLink className={buttonVariants({ variant: "secondary" })}>
+            Sign up
+          </RegisterLink>
+        </div>
+      )}      
     </nav>
   );
 }
