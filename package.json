@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+     "build": "prisma generate && next build"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.11.0",
