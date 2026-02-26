@@ -7,7 +7,7 @@ export function Submitbutton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button className="w-fit" type="submit" disabled={pending}>
+    <Button className="w-fit mx-auto" type="submit" disabled={pending}>
       {pending ? "Submitting" : "Submit"}
     </Button>
   );
