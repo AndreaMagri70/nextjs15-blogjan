@@ -4,7 +4,7 @@ import { resolve } from "path";
 import { Suspense } from "react";
 
 async function getData() {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const data = await prisma.blogPost.findMany({
     select: {
       title: true,
@@ -27,7 +27,7 @@ export default function HomePage() {
   return (
     <div className="py-6">
       <h1 className="text-3xl font-bold tracking-tight mb-8">Latest Posts</h1>
-      <Suspense fallback={<h3 className="text-3xl">Hello waiting...</h3>}>
+      <Suspense fallback={<h3 className="text-3xl">Loading Now...</h3>}>
         <BlogPosts />
       </Suspense>      
     </div>
